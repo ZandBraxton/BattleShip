@@ -1,30 +1,43 @@
 export default class gameFactory {
-    constructor(player) {
-        this.player = player
-        this.name = 'gameBoard'
-        this.height = 10
-        this.width = 10
-        this.board = []
+    constructor() {
+        this.boardArea = []
+        this.missedShots = []
+        this.hasShip = []
+        this.allShipsSunk = false
     }
 
     makeBoard() {
-        let num = 0
-        for (let i = 0; i < this.height; i++) {
-            let row = []
-            for (let j = 0; j < this.width; j++) {
-                row.push(num)
-                num++
-            }
-            this.board.push(row)
+        for (let i = 0; i < 100; i++) {
+            this.boardArea.push(i)
         }
-        return this.board
+    
     }
 
-    setShip() {
 
+    // makeBoard() {
+    //     let num = 0
+    //     for (let i = 0; i < 10; i++) {
+    //         let row = []
+    //         for (let j = 0; j < 10; j++) {
+    //             row.push(num)
+    //             num++
+    //         }
+    //         this.boardArea.push(row)
+    //     }
+    // }
+
+    setShip(array) {
+        this.hasShip = array
+        return this.hasShip
     }
 
     receiveAttack(location) {
-
+        if (this.hasShip.includes(location)) {
+            //ship.Hit()
+            return "Ship here"
+        } else {
+            this.missedShots.push(location)
+            return "Ship not here"
+        }
     }
 }
