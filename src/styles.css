@@ -1,0 +1,30 @@
+body {
+    margin: 0;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+.p1board {
+    display: grid;
+    height: 500;
+    width: 500;
+    grid-template-columns: repeat(10, 50px);
+    
+}
+
+.cell {
+    outline: 1px solid red ;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+}
+
+.ship {
+    background-color: red;
+}

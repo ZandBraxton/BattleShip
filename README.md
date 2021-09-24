@@ -7,12 +7,11 @@
 2 []
 3 []
 4 []
-5 []ggg
+5 []
 6 []
 7 []
 8 []
 9 []
-
 
 
 	Carrier 	5
@@ -36,3 +35,11 @@ ship {
         dead
     }
 }
+
+Player 1 is created
+Player 1's gameboard is created
+Now you need to make the ships
+To make the first ship, you need to make it
+then you place it down
+I click on a location which is determined by the length of the ship
+

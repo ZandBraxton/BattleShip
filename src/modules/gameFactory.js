@@ -26,13 +26,14 @@ export default class gameFactory {
     //     }
     // }
 
-    setShip(array) {
-        this.hasShip = array
-        return this.hasShip
+    setShip(location, length) {
+        let coords = this.boardArea.slice(location, location + length)
+        this.hasShip.push(coords)
+        return coords
     }
 
     receiveAttack(location) {
-        if (this.hasShip.includes(location)) {
+        if (this.hasShip[0].includes(location)) {
             //ship.Hit()
             return "Ship here"
         } else {

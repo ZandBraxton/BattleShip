@@ -14,6 +14,12 @@ export default class playerFactory {
         this.ships.push(ship)
         ship = new shipFactory("Battleship", 4)
         this.ships.push(ship)
+        ship = new shipFactory("Destroyer", 3)
+        this.ships.push(ship)
+        ship = new shipFactory("Submarine", 3)
+        this.ships.push(ship)
+        ship = new shipFactory("Patrol Boat", 2)
+        this.ships.push(ship)
     }
 
     
