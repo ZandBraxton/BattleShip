@@ -10,7 +10,7 @@ Player1.createShips()
 // console.log(Player1)
 
 function placeShips() {
-        Player1.gameBoard.setShip(4, Player1.ships[0].length)
+        Player1.gameBoard.setShip(47, Player1.ships[0].length)
         Player1.gameBoard.setShip(12, Player1.ships[1].length)
         Player1.gameBoard.setShip(33, Player1.ships[2].length)
         Player1.gameBoard.setShip(65, Player1.ships[3].length)
