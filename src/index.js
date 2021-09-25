@@ -3,47 +3,77 @@ import './styles.css';
 
 //create player
 const Player1 = new playerFactory('Player1')
+const CPU = new playerFactory('CPU')
 
 //init board
+
+
+
+
 Player1.gameBoard.makeBoard();
 Player1.createShips()
+
+CPU.gameBoard.makeBoard()
+CPU.createShips()
+
+placeShips(Player1)
+placeShips(CPU)
 // console.log(Player1)
 
-function placeShips() {
-        Player1.gameBoard.setShip(47, Player1.ships[0].length)
-        Player1.gameBoard.setShip(12, Player1.ships[1].length)
-        Player1.gameBoard.setShip(33, Player1.ships[2].length)
-        Player1.gameBoard.setShip(65, Player1.ships[3].length)
-        Player1.gameBoard.setShip(76, Player1.ships[4].length)
-        return Player1.gameBoard.hasShip
-    
+function placeShips(player) {
+        player.ships[0].setCoords(47, player.gameBoard.boardArea)
+        player.gameBoard.setShip(player.ships[0])
+
+        player.ships[1].setCoords(12, player.gameBoard.boardArea)
+        player.gameBoard.setShip(player.ships[1])
+
+        player.ships[2].setCoords(33, player.gameBoard.boardArea)
+        player.gameBoard.setShip(player.ships[2])
+
+        player.ships[3].setCoords(65, player.gameBoard.boardArea)
+        player.gameBoard.setShip(player.ships[3])
+
+        player.ships[4].setCoords(76, player.gameBoard.boardArea)
+        player.gameBoard.setShip(player.ships[4])
+
+        return player.gameBoard.hasShip
 }
 
-function renderBoard() {
-    let board = document.querySelector('.p1board')
-    for (let i = 0; i < Player1.gameBoard.boardArea.length; i++) {
-        let cell = document.createElement('div')
-        cell.textContent = i
-        cell.id = i
-        cell.classList.add('cell')
-        board.appendChild(cell)
-    }
-}
+// function renderBoard(element, player) {
+//     let board = document.querySelector(element)
+//     for (let i = 0; i < player.gameBoard.boardArea.length; i++) {
+//         let cell = document.createElement('div')
+//         cell.textContent = i
+//         cell.id = i
+//         cell.classList.add('cell')
+//         cell.addEventListener('click', () => {
 
-function renderShips() {
-    let cell = ''
-    for(let i = 0; i < 5; i++) {
-        for (let j = 0; j < Player1.gameBoard.hasShip[i].length; j++) {
-             cell = document.getElementById(Player1.gameBoard.hasShip[i][j])
-             cell.classList.add("ship")
-            }
-        }
-}
+//         })
+//         board.appendChild(cell)
+//     }
+// }
 
-placeShips()
+// function renderShips(player) {
+//     let cell = ''
+//     for(let i = 0; i < 5; i++) {
+//         for (let j = 0; j < player.gameBoard.hasShip[i].length; j++) {
+//              cell = document.getElementById(player.gameBoard.hasShip[i][j])
+//              cell.classList.add("ship")
+//             }
+//         }
+// }
 
-renderBoard();
-renderShips()
+// console.log(Player1)
+//  console.log(CPU)
+
+
+
+// renderBoard('.p1board', Player1);
+// renderShips(Player1)
+
+// renderBoard('.cpuboard', CPU);
+
+
 
 
 export {placeShips}

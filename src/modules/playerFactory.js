@@ -22,7 +22,10 @@ export default class playerFactory {
         this.ships.push(ship)
     }
 
-    
+    fireShot(location, player) {
+        let result = player.gameBoard.receiveAttack(location)
+        return result
+    }
 
 
 

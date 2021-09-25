@@ -10,12 +10,17 @@ html {
     box-sizing: inherit;
 }
 
-.p1board {
+.game-container {
+    display: flex;
+    flex-flow: row;
+    gap: 3em;
+}
+
+.p1board, .cpuboard {
     display: grid;
     height: 500;
     width: 500;
     grid-template-columns: repeat(10, 50px);
-    
 }
 
 .cell {
@@ -27,4 +32,8 @@ html {
 
 .ship {
     background-color: red;
+}
+
+.cell:hover {
+    background-color: blue;
 }

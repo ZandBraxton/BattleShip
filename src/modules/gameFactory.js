@@ -26,19 +26,20 @@ export default class gameFactory {
     //     }
     // }
 
-    setShip(location, length) {
-        let coords = this.boardArea.slice(location, location + length)
-        this.hasShip.push(coords)
-        return coords
+    setShip(ship) {
+        this.hasShip.push(ship)
+        return ship
     }
 
     receiveAttack(location) {
-        if (this.hasShip[0].includes(location)) {
+        for (let i = 0; i < this.hasShip.length; i++) {
+             if (this.hasShip[i]['coords'].includes(location)) {
             //ship.Hit()
-            return "Ship here"
-        } else {
-            this.missedShots.push(location)
-            return "Ship not here"
+            return "Hit"
+            }
         }
+        this.missedShots.push(location)
+        return "Missed"  
     }
+
 }

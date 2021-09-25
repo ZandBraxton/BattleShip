@@ -4,17 +4,25 @@ import shipFactory from '../modules/shipFactory'
 
 
 let ship = new shipFactory("carrier", 5)
-ship.setCoords([5,6,7,8,9])
+let area = []
+for (let i = 0; i < 100; i++) {
+    area.push(i)
+}
 
-test('ship got hit', () => {
+
+
+test('ship attacked', () => {
+    ship.setCoords(4, area)
+
+
     expect(ship.Hit(6)).toBe("got hit")
-})
-
-test('ship missed', () => {
     expect(ship.Hit(20)).toBe("missed")
 })
 
+
+
 test('ship dead', ()=> {
+    ship.setCoords(5, area)
     ship.Hit(5);
     ship.Hit(6);
     ship.Hit(7);
@@ -26,5 +34,5 @@ test('ship dead', ()=> {
 
 
 test('coordinates placed', () => {
-    expect(ship.setCoords([5,6,7,8,9])).toStrictEqual([5,6,7,8,9])
+    expect(ship.setCoords(4, area)).toBe(ship)
 })

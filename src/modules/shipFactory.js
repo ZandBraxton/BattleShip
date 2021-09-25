@@ -6,9 +6,10 @@ export default class shipFactory {
         this.sunk = false
     }
 
-    setCoords(array) {
-        this.coords = array
-        return this.coords
+    setCoords(location, area) {
+        let coords = area.slice(location, location + this.length)
+        this.coords = coords
+        return this
     }
 
     Hit(location) {
@@ -27,6 +28,5 @@ export default class shipFactory {
     isSunk() {
        this.sunk = true
     }
-
 
 };
