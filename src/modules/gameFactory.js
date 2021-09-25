@@ -14,28 +14,25 @@ export default class gameFactory {
     }
 
 
-    // makeBoard() {
-    //     let num = 0
-    //     for (let i = 0; i < 10; i++) {
-    //         let row = []
-    //         for (let j = 0; j < 10; j++) {
-    //             row.push(num)
-    //             num++
-    //         }
-    //         this.boardArea.push(row)
-    //     }
-    // }
-
     setShip(ship) {
         this.hasShip.push(ship)
         return ship
     }
 
+    sinkShip(ship) {
+        let index = this.hasShip.indexOf(ship)
+        this.hasShip.splice(index, 1)
+        console.log(this.hasShip)
+        if (this.hasShip.length === 0) {
+            this.allShipsSunk = true
+        }
+        return this.hasShip
+    }
+
     receiveAttack(location) {
         for (let i = 0; i < this.hasShip.length; i++) {
              if (this.hasShip[i]['coords'].includes(location)) {
-            //ship.Hit()
-            return "Hit"
+            return this.hasShip[i]
             }
         }
         this.missedShots.push(location)

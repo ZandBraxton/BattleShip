@@ -18,7 +18,7 @@ CPU.createShips()
 
 placeShips(Player1)
 placeShips(CPU)
-// console.log(Player1)
+console.log(Player1)
 
 function placeShips(player) {
         player.ships[0].setCoords(47, player.gameBoard.boardArea)
@@ -39,39 +39,46 @@ function placeShips(player) {
         return player.gameBoard.hasShip
 }
 
-// function renderBoard(element, player) {
-//     let board = document.querySelector(element)
-//     for (let i = 0; i < player.gameBoard.boardArea.length; i++) {
-//         let cell = document.createElement('div')
-//         cell.textContent = i
-//         cell.id = i
-//         cell.classList.add('cell')
-//         cell.addEventListener('click', () => {
-
-//         })
-//         board.appendChild(cell)
-//     }
-// }
-
-// function renderShips(player) {
-//     let cell = ''
-//     for(let i = 0; i < 5; i++) {
-//         for (let j = 0; j < player.gameBoard.hasShip[i].length; j++) {
-//              cell = document.getElementById(player.gameBoard.hasShip[i][j])
-//              cell.classList.add("ship")
-//             }
-//         }
-// }
-
-// console.log(Player1)
-//  console.log(CPU)
+Player1.fireShot(76, CPU)
+Player1.fireShot(77, CPU)
 
 
 
-// renderBoard('.p1board', Player1);
-// renderShips(Player1)
 
-// renderBoard('.cpuboard', CPU);
+function renderBoard(element, player) {
+    let board = document.querySelector(element)
+    for (let i = 0; i < player.gameBoard.boardArea.length; i++) {
+        let cell = document.createElement('div')
+        cell.textContent = i
+        cell.id = i
+        cell.classList.add('cell')
+        // cell.addEventListener('click', () => {
+
+        // })
+        board.appendChild(cell)
+    }
+}
+
+function renderShips(player) {
+    let cell = ''
+    for(let i = 0; i < 5; i++) {
+        for (let j = 0; j < player.ships[i].length; j++) {
+             cell = document.getElementById(player.ships[i].coords[j])
+             cell.classList.add("ship")
+            }
+        }
+}
+
+console.log(Player1)
+ console.log(CPU)
+
+
+
+renderBoard('.p1board', Player1);
+renderShips(Player1)
+
+renderBoard('.cpuboard', CPU);
+// renderShips(CPU)
 
 
 

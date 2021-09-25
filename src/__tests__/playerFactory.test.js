@@ -29,7 +29,6 @@ describe('tests', () => {
 
 
     test('shoot', () => {
-        console.log(CPU.gameBoard.hasShip.length)
         expect(Player1.fireShot(14, CPU)).toBe('Hit')
         expect(Player1.fireShot(9, CPU)).toBe('Missed')
     })

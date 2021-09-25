@@ -20,10 +20,17 @@ describe('gametest', () => {
 
     test('is there a ship here?', () => {
         
-        gameBoard.setShip(ship)
-        expect(gameBoard.receiveAttack(6)).toBe("Hit")
+        // gameBoard.setShip(ship)
+        expect(gameBoard.receiveAttack(6)).toBe(ship)
         expect(gameBoard.receiveAttack(33)).toBe("Missed")
     })
+
+    test('ship removed?', () => {
+        
+        expect(gameBoard.sinkShip(ship)).toStrictEqual([])
+        expect(gameBoard.allShipsSunk).toStrictEqual(true)
+    })
+
 
 
 })

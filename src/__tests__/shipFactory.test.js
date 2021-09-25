@@ -16,7 +16,6 @@ test('ship attacked', () => {
 
 
     expect(ship.Hit(6)).toBe("got hit")
-    expect(ship.Hit(20)).toBe("missed")
 })
 
 
@@ -31,6 +30,17 @@ test('ship dead', ()=> {
     expect(ship.sunk).toBe(true)
 
 })
+
+test('ship sunk true', ()=> {
+    ship.setCoords(5, area)
+    ship.Hit(5);
+    ship.Hit(6);
+    ship.Hit(7);
+    ship.Hit(8);
+    expect(ship.Hit(9)).toBe(true)
+
+})
+
 
 
 test('coordinates placed', () => {

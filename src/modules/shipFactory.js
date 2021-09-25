@@ -13,20 +13,17 @@ export default class shipFactory {
     }
 
     Hit(location) {
-        if (this.coords.includes(location)) {
             let index = this.coords.indexOf(location)
             this.coords.splice(index, 1)
             if (this.coords.length === 0) {
-                this.isSunk()
+                return this.isSunk()
             }
             return "got hit"
-
-        } else
-            return "missed"
     }
 
     isSunk() {
        this.sunk = true
+       return this.sunk
     }
 
 };

@@ -24,7 +24,16 @@ export default class playerFactory {
 
     fireShot(location, player) {
         let result = player.gameBoard.receiveAttack(location)
-        return result
+        if (result === "Missed") {
+            return result
+        }
+        let isDead = result.Hit(location)
+        if (isDead === true) {
+            player.gameBoard.sinkShip(result)
+        }
+        //check for game over
+        return "Hit"
+
     }
 
 
