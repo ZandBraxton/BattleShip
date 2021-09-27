@@ -41,3 +41,7 @@ html {
 .missed {
     background-color: grey;
 }
+
+.hit {
+    background-color: red;
+}

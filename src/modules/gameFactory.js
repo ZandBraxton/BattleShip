@@ -1,7 +1,7 @@
 export default class gameFactory {
     constructor() {
         this.boardArea = []
-        this.missedShots = []
+        this.attacked = []
         this.hasShip = []
         this.allShipsSunk = false
     }
@@ -32,12 +32,13 @@ export default class gameFactory {
     receiveAttack(location) {
         for (let i = 0; i < this.hasShip.length; i++) {
              if (this.hasShip[i]['coords'].includes(location)) {
-            return this.hasShip[i]
+                this.attacked.push(location)
+                return this.hasShip[i]
             }
-        } if (this.missedShots.includes(location)) {
+        } if (this.attacked.includes(location)) {
             return "AlreadyAttacked"
         } else {
-            this.missedShots.push(location)
+            this.attacked.push(location)
             return "Missed"  
         }
         
