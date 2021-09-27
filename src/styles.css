@@ -31,9 +31,13 @@ html {
 }
 
 .ship {
-    background-color: red;
+    background-color: green;
 }
 
 .cell:hover {
     background-color: blue;
+}
+
+.missed {
+    background-color: grey;
 }

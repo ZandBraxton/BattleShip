@@ -27,6 +27,9 @@ export default class playerFactory {
         if (result === "Missed") {
             return result
         }
+        if (result === "AlreadyAttacked") {
+            return result
+        }
         let isDead = result.Hit(location)
         if (isDead === true) {
             player.gameBoard.sinkShip(result)

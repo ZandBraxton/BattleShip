@@ -31,6 +31,7 @@ describe('tests', () => {
     test('shoot', () => {
         expect(Player1.fireShot(14, CPU)).toBe('Hit')
         expect(Player1.fireShot(9, CPU)).toBe('Missed')
+        expect(Player1.fireShot(9, CPU)).toBe('AlreadyAttacked')
     })
 })
 

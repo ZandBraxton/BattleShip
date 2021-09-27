@@ -50,34 +50,48 @@ function renderBoard(element, player) {
     for (let i = 0; i < player.gameBoard.boardArea.length; i++) {
         let cell = document.createElement('div')
         cell.textContent = i
-        cell.id = i
         cell.classList.add('cell')
-        // cell.addEventListener('click', () => {
-
-        // })
+        let result;
+        cell.addEventListener('click', (e) => {
+            let target = e
+            console.log(e)
+            // result = Player1.fireShot(parseInt(e.target.id), CPU)
+            // renderShot(e.target.id, CPU, result)
+            // console.log(CPU)
+        })
         board.appendChild(cell)
     }
 }
 
-function renderShips(player) {
-    let cell = ''
-    for(let i = 0; i < 5; i++) {
-        for (let j = 0; j < player.ships[i].length; j++) {
-             cell = document.getElementById(player.ships[i].coords[j])
-             cell.classList.add("ship")
-            }
-        }
+function renderShips(board, player) {
+    let currentBoard = document.querySelector(board)
+    for (let i = 0; i < player.gameBoard.hasShip.length; i++) {
+        for (let j = 0; j < player.gameBoard.hasShip[i].length; j++) {
+             let index = player.gameBoard.hasShip[i].coords[j]
+             let child = currentBoard.childNodes[index]
+             child.classList.add('ship')
+        }  
+    }
+}
+
+function renderShot(location, player, result) {
+    console.log(result)
+    let coords = document.getElementById(location)
+    if (result === "Missed") {
+        coords.classList.add("missed")
+    }
 }
 
 console.log(Player1)
- console.log(CPU)
+console.log(CPU)
 
 
 
 renderBoard('.p1board', Player1);
-renderShips(Player1)
+renderShips('.p1board', Player1)
 
 renderBoard('.cpuboard', CPU);
+renderShips('.cpuboard', CPU)
 // renderShips(CPU)
 
 

@@ -34,9 +34,13 @@ export default class gameFactory {
              if (this.hasShip[i]['coords'].includes(location)) {
             return this.hasShip[i]
             }
+        } if (this.missedShots.includes(location)) {
+            return "AlreadyAttacked"
+        } else {
+            this.missedShots.push(location)
+            return "Missed"  
         }
-        this.missedShots.push(location)
-        return "Missed"  
+        
     }
 
 }
