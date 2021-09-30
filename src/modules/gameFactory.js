@@ -22,10 +22,9 @@ export default class gameFactory {
     sinkShip(ship) {
         let index = this.hasShip.indexOf(ship)
         this.hasShip.splice(index, 1)
-        console.log(this.hasShip)
         if (this.hasShip.length === 0) {
             this.allShipsSunk = true
-            console.log("Game Over")
+            return "Game Over"
         }
         return this.hasShip
     }

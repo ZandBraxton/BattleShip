@@ -27,7 +27,7 @@ describe('gametest', () => {
 
     test('ship removed?', () => {
         
-        expect(gameBoard.sinkShip(ship)).toStrictEqual([])
+        expect(gameBoard.sinkShip(ship)).toStrictEqual('Game Over')
         expect(gameBoard.allShipsSunk).toStrictEqual(true)
     })
 
