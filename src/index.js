@@ -73,7 +73,7 @@ function renderShips(board, player) {
 }
 
 function renderShot(location, player, result) {
-    console.log(result)
+    // console.log(result)
     let coords = document.getElementById(location)
     if (result === "Missed") {
         coords.classList.add("missed")
@@ -84,14 +84,28 @@ function renderShot(location, player, result) {
 
 function appendListenerCPU() {
     let board = document.querySelector('.cpuboard')
-    console.log(board.childNodes)
     let result;
     board.childNodes.forEach(cell => {
         cell.addEventListener('click', (e) => {
             result = Player1.fireShot(parseInt(e.target.dataset.indexNumber), CPU)
+            if (result === "AlreadyAttacked") {
+                return
+            }
             renderShot(e.target.id, CPU, result)
+            computerAI()
         })
     })
+}
+
+function computerAI() {
+    let board = document.querySelector('.p1board')
+    let random = Math.floor(Math.random() * 99)
+    let result = CPU.fireShot(parseInt(random), Player1)
+    while (result === "AlreadyAttacked") {
+        random = Math.floor(Math.random() * 99)
+        result = CPU.fireShot(parseInt(random), Player1)
+    }
+    renderShot(board.children[random].id, Player1, result)    
 }
 
 

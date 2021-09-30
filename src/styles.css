@@ -36,6 +36,7 @@ html {
 
 .cpuboard >.cell:hover {
     background-color: blue;
+    cursor: pointer;
 }
 
 .missed {
