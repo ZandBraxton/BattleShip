@@ -4,6 +4,7 @@ import './styles.css';
 //create player
 const Player1 = new playerFactory('Player1')
 const CPU = new playerFactory('CPU')
+let i = 0
 // const currentPlayer;
 
 //init board
@@ -14,11 +15,11 @@ const CPU = new playerFactory('CPU')
 Player1.gameBoard.makeBoard();
 Player1.createShips()
 
-CPU.gameBoard.makeBoard()
-CPU.createShips()
+// CPU.gameBoard.makeBoard()
+// CPU.createShips()
 
-placeShips(Player1)
-placeShips(CPU)
+// placeShips(Player1)
+// placeShips(CPU)
 // console.log(Player1)
 // console.log(CPU)
 
@@ -41,9 +42,25 @@ function placeShips(player) {
         return player.gameBoard.hasShip
 }
 
-// function gameStart (Player1, CPU) {
-//     currentPlayer = Player1
-// }
+function placeShip(e) {
+    let location = parseInt(e.target.dataset.indexNumber)
+    Player1.ships[i].setCoords(location, Player1.gameBoard.boardArea)
+    Player1.gameBoard.setShip(Player1.ships[i])
+    renderShips('.p1board', Player1)
+    i++
+    if (i === 5) {
+        let board = document.querySelector('.p1board')
+        board.childNodes.forEach(cell => cell.removeEventListener('click', placeShip))
+        CPU.gameBoard.makeBoard()
+        CPU.createShips()
+        placeShips(CPU)
+        renderBoard('.cpuboard', CPU);
+        renderShips('.cpuboard', CPU)
+        appendListenerCPU()
+    }
+}
+
+
 
 
 
@@ -82,6 +99,13 @@ function renderShot(location, player, result) {
     }
 }
 
+function appendListenerP1() {
+    let board = document.querySelector('.p1board')
+    board.childNodes.forEach(cell => cell.addEventListener('click', placeShip))
+}
+
+
+
 function appendListenerCPU() {
     let board = document.querySelector('.cpuboard')
     let result;
@@ -113,12 +137,13 @@ function computerAI() {
 
 
 renderBoard('.p1board', Player1);
-renderShips('.p1board', Player1)
+appendListenerP1()
+// renderShips('.p1board', Player1)
 
-renderBoard('.cpuboard', CPU);
-renderShips('.cpuboard', CPU)
+// renderBoard('.cpuboard', CPU);
+// renderShips('.cpuboard', CPU)
 
-appendListenerCPU()
+// appendListenerCPU()
 
 
 

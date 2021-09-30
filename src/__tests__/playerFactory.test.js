@@ -19,6 +19,15 @@ function placeShips(player) {
     return player.gameBoard.hasShip
 }
 
+function computerAI() {
+    let random = Math.floor(Math.random() * 99)
+    let result = CPU.fireShot(parseInt(random), Player1)
+    while (result === "AlreadyAttacked") {
+        random = Math.floor(Math.random() * 99)
+        result = CPU.fireShot(parseInt(random), Player1)
+    }
+}
+
 
 
 describe('tests', () => {
@@ -52,6 +61,7 @@ describe('tests', () => {
         expect(Player1.fireShot(9, CPU)).toBe('Missed')
         expect(Player1.fireShot(9, CPU)).toBe('AlreadyAttacked')
     })
+    
 })
 
 
