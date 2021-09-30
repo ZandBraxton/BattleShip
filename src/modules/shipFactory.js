@@ -6,9 +6,18 @@ export default class shipFactory {
         this.sunk = false
     }
 
-    setCoords(location, area) {
-        let coords = area.slice(location, location + this.length)
-        this.coords = coords
+    setCoords(location, axis) {
+        for (let i = 0; i < this.length; i++) {
+            if (axis === "x") {
+                this.coords.push(location + i)
+            } else {
+                this.coords.push(location + i * 10)
+            }
+            
+        }
+        
+        // let coords = area.slice(location, location + this.length)
+        // this.coords = coords
         return this
     }
 

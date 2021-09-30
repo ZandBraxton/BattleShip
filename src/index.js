@@ -5,6 +5,7 @@ import './styles.css';
 const Player1 = new playerFactory('Player1')
 const CPU = new playerFactory('CPU')
 let i = 0
+let axis = "x"
 // const currentPlayer;
 
 //init board
@@ -23,20 +24,33 @@ Player1.createShips()
 // console.log(Player1)
 // console.log(CPU)
 
+
+const rotate = document.querySelector('.rotate')
+rotate.addEventListener('click', changeAxis)
+
+function changeAxis() {
+    if (axis === "x") {
+        axis = "y"
+    } else {
+        axis = "x"
+    }
+}
+
+
 function placeShips(player) {
-        player.ships[0].setCoords(91, player.gameBoard.boardArea)
+        player.ships[0].setCoords(91, axis)
         player.gameBoard.setShip(player.ships[0])
 
-        player.ships[1].setCoords(12, player.gameBoard.boardArea)
+        player.ships[1].setCoords(12, axis)
         player.gameBoard.setShip(player.ships[1])
 
-        player.ships[2].setCoords(33, player.gameBoard.boardArea)
+        player.ships[2].setCoords(33, axis)
         player.gameBoard.setShip(player.ships[2])
 
-        player.ships[3].setCoords(65, player.gameBoard.boardArea)
+        player.ships[3].setCoords(65, axis)
         player.gameBoard.setShip(player.ships[3])
 
-        player.ships[4].setCoords(50, player.gameBoard.boardArea)
+        player.ships[4].setCoords(50, axis)
         player.gameBoard.setShip(player.ships[4])
 
         return player.gameBoard.hasShip
@@ -44,9 +58,10 @@ function placeShips(player) {
 
 function placeShip(e) {
     let location = parseInt(e.target.dataset.indexNumber)
-    Player1.ships[i].setCoords(location, Player1.gameBoard.boardArea)
+    Player1.ships[i].setCoords(location, axis)
     Player1.gameBoard.setShip(Player1.ships[i])
     renderShips('.p1board', Player1)
+    console.log(Player1)
     i++
     if (i === 5) {
         let board = document.querySelector('.p1board')

@@ -43,3 +43,10 @@ To make the first ship, you need to make it
 then you place it down
 I click on a location which is determined by the length of the ship
 
+
+when placing ships, check for
+No collisons with wall or other ships
+return and force placement again if collison
+make mouse hover show ship placement
+<!-- add rotation to ship -->
+
