@@ -25,6 +25,7 @@ export default class gameFactory {
         console.log(this.hasShip)
         if (this.hasShip.length === 0) {
             this.allShipsSunk = true
+            console.log("Game Over")
         }
         return this.hasShip
     }

@@ -4,6 +4,7 @@ import './styles.css';
 //create player
 const Player1 = new playerFactory('Player1')
 const CPU = new playerFactory('CPU')
+// const currentPlayer;
 
 //init board
 
@@ -18,8 +19,8 @@ CPU.createShips()
 
 placeShips(Player1)
 placeShips(CPU)
-console.log(Player1)
-console.log(CPU)
+// console.log(Player1)
+// console.log(CPU)
 
 function placeShips(player) {
         player.ships[0].setCoords(91, player.gameBoard.boardArea)
@@ -40,8 +41,10 @@ function placeShips(player) {
         return player.gameBoard.hasShip
 }
 
-// Player1.fireShot(76, CPU)
-// Player1.fireShot(77, CPU)
+// function gameStart (Player1, CPU) {
+//     currentPlayer = Player1
+// }
+
 
 
 
@@ -54,14 +57,6 @@ function renderBoard(element, player) {
         cell.classList.add('cell')
         cell.id = `${player.name} ${i}`
         cell.dataset.indexNumber = i
-        let result;
-        cell.addEventListener('click', (e) => {
-            let parentNodes = e.target.parentElement.childNodes
-            // parentNodes.item(e.target.dataset.indexNumber).classList.add('missed')
-            result = Player1.fireShot(parseInt(e.target.dataset.indexNumber), CPU)
-            renderShot(e.target.id, CPU, result)
-            console.log(CPU)
-        })
         board.appendChild(cell)
     }
 }
@@ -87,6 +82,18 @@ function renderShot(location, player, result) {
     }
 }
 
+function appendListenerCPU() {
+    let board = document.querySelector('.cpuboard')
+    console.log(board.childNodes)
+    let result;
+    board.childNodes.forEach(cell => {
+        cell.addEventListener('click', (e) => {
+            result = Player1.fireShot(parseInt(e.target.dataset.indexNumber), CPU)
+            renderShot(e.target.id, CPU, result)
+        })
+    })
+}
+
 
 
 
@@ -96,10 +103,12 @@ renderShips('.p1board', Player1)
 
 renderBoard('.cpuboard', CPU);
 renderShips('.cpuboard', CPU)
-// renderShips(CPU)
+
+appendListenerCPU()
 
 
 
 
-export {placeShips}
+
+
 

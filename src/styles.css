@@ -34,7 +34,7 @@ html {
     background-color: green;
 }
 
-.cell:hover {
+.cpuboard >.cell:hover {
     background-color: blue;
 }
 
