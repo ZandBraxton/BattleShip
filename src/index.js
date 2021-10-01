@@ -10,19 +10,24 @@ let axis = 0
 
 //init board
 
+const newGame = document.querySelector('.new-game')
+
+newGame.addEventListener('click', gameStart)
+
+function gameStart() {
+    Player1.gameBoard.makeBoard();
+    Player1.createShips()
+    renderBoard('.p1board', Player1);
+    appendListenerP1()
+    newGame.removeEventListener('click', gameStart)
+}
+gameStart()
 
 
 
-Player1.gameBoard.makeBoard();
-Player1.createShips()
+let root = document.documentElement;
+root.style.setProperty('--ship-length', 50 * Player1.ships[i].length + "px")
 
-// CPU.gameBoard.makeBoard()
-// CPU.createShips()
-
-// placeShips(Player1)
-// placeShips(CPU)
-// console.log(Player1)
-// console.log(CPU)
 
 
 const rotate = document.querySelector('.rotate')
@@ -41,8 +46,8 @@ function changeAxis() {
 
 function placeShip(e) {
     let location = parseInt(e.target.dataset.indexNumber)
-    
     Player1.ships[i].setCoords(location, axis)
+    root.style.setProperty('--ship-length', 50 * Player1.ships[i].length + "px")
     let check = Player1.gameBoard.setShip(Player1.ships[i])
     console.log(check)
     if (check === false) {
@@ -87,7 +92,7 @@ function renderBoard(element, player) {
     let board = document.querySelector(element)
     for (let i = 0; i < player.gameBoard.boardArea.length; i++) {
         let cell = document.createElement('div')
-        cell.textContent = i
+        // cell.textContent = i
         cell.classList.add('cell')
         cell.id = `${player.name} ${i}`
         cell.dataset.indexNumber = i
@@ -150,17 +155,6 @@ function computerAI() {
 }
 
 
-
-
-
-renderBoard('.p1board', Player1);
-appendListenerP1()
-// renderShips('.p1board', Player1)
-
-// renderBoard('.cpuboard', CPU);
-// renderShips('.cpuboard', CPU)
-
-// appendListenerCPU()
 
 
 

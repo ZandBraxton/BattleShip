@@ -44,9 +44,16 @@ then you place it down
 I click on a location which is determined by the length of the ship
 
 
-when placing ships, check for
+<!-- when placing ships, check for
 No collisons with wall or other ships
-return and force placement again if collison
-make mouse hover show ship placement
+return and force placement again if collison -->
+make mouse hover show ship placement 
+Make mouse hover register if rotation is y axis
+make mouse hover go away after all five ships are placed
+
+
+make game over screen
+make restart game work
+make enter name function
 <!-- add rotation to ship -->
 
