@@ -41,8 +41,8 @@ describe('tests', () => {
     Player1.createShips()
     CPU.gameBoard.makeBoard()
     CPU.createShips()
-    placeShips(Player1)
-    placeShips(CPU)
+    CPU.ships[0].setCoords(13, 0)
+    CPU.gameBoard.setShip(CPU.ships[0])
     })
 
     test('init', () => {

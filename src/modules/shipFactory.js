@@ -8,7 +8,7 @@ export default class shipFactory {
 
     setCoords(location, axis) {
         for (let i = 0; i < this.length; i++) {
-            if (axis === "x") {
+            if (axis === 0) {
                 this.coords.push(location + i)
             } else {
                 this.coords.push(location + i * 10)

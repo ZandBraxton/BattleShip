@@ -5,7 +5,7 @@ import './styles.css';
 const Player1 = new playerFactory('Player1')
 const CPU = new playerFactory('CPU')
 let i = 0
-let axis = "x"
+let axis = 0
 // const currentPlayer;
 
 //init board
@@ -29,32 +29,15 @@ const rotate = document.querySelector('.rotate')
 rotate.addEventListener('click', changeAxis)
 
 function changeAxis() {
-    if (axis === "x") {
-        axis = "y"
+    if (axis === 0) {
+        axis = 1
     } else {
-        axis = "x"
+        axis = 0
     }
 }
 
 
-function placeShips(player) {
-        player.ships[0].setCoords(91, axis)
-        player.gameBoard.setShip(player.ships[0])
 
-        player.ships[1].setCoords(12, axis)
-        player.gameBoard.setShip(player.ships[1])
-
-        player.ships[2].setCoords(33, axis)
-        player.gameBoard.setShip(player.ships[2])
-
-        player.ships[3].setCoords(65, axis)
-        player.gameBoard.setShip(player.ships[3])
-
-        player.ships[4].setCoords(50, axis)
-        player.gameBoard.setShip(player.ships[4])
-
-        return player.gameBoard.hasShip
-}
 
 function placeShip(e) {
     let location = parseInt(e.target.dataset.indexNumber)
@@ -73,15 +56,29 @@ function placeShip(e) {
         board.childNodes.forEach(cell => cell.removeEventListener('click', placeShip))
         CPU.gameBoard.makeBoard()
         CPU.createShips()
-        placeShips(CPU)
+        placeCPUShips(CPU)
         renderBoard('.cpuboard', CPU);
         renderShips('.cpuboard', CPU)
         appendListenerCPU()
     }
 }
 
-
-
+function placeCPUShips(CPU) {
+    for (let i = 0; i < 5; i++) {
+        let randomAxis = Math.round(Math.random())
+        let random = Math.floor(Math.random() * 99)
+        console.log(random)
+        CPU.ships[i].setCoords(random, randomAxis)
+        let check = CPU.gameBoard.setShip(CPU.ships[i])
+        while (check === false) {
+            console.log("IN THE LOOP")
+            random = Math.floor(Math.random() * 99)
+            CPU.ships[i].setCoords(random, randomAxis)
+            check = CPU.gameBoard.setShip(CPU.ships[i])
+        }
+    }
+   
+}
 
 
 
