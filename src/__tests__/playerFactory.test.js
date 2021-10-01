@@ -1,19 +1,19 @@
 import playerFactory from '../modules/playerFactory'
 
 function placeShips(player) {
-    player.ships[0].setCoords(91, player.gameBoard.boardArea)
+    player.ships[0].setCoords(91, "x")
     player.gameBoard.setShip(player.ships[0])
 
-    player.ships[1].setCoords(12, player.gameBoard.boardArea)
+    player.ships[1].setCoords(12, "x")
     player.gameBoard.setShip(player.ships[1])
 
-    player.ships[2].setCoords(33, player.gameBoard.boardArea)
+    player.ships[2].setCoords(33, "x")
     player.gameBoard.setShip(player.ships[2])
 
-    player.ships[3].setCoords(65, player.gameBoard.boardArea)
+    player.ships[3].setCoords(65, "x")
     player.gameBoard.setShip(player.ships[3])
 
-    player.ships[4].setCoords(50, player.gameBoard.boardArea)
+    player.ships[4].setCoords(50, "x")
     player.gameBoard.setShip(player.ships[4])
 
     return player.gameBoard.hasShip

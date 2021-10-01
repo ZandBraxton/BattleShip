@@ -3,7 +3,7 @@ import playerFactory from "../modules/playerFactory"
 
 let ship =  {
     name: "name",
-    coords: "5, 6, 7, 8, 9"
+    coords: [5, 6, 7, 8, 9]
 }
 
 
@@ -31,7 +31,17 @@ describe('gametest', () => {
         expect(gameBoard.allShipsSunk).toStrictEqual(true)
     })
 
+    test('check collision', () => {
+        expect(gameBoard.checkCollision([6, 7, 8, 9, 10])).toBe(false)
+        expect(gameBoard.checkCollision([38, 39, 40, 41])).toBe(false)
+        expect(gameBoard.checkCollision([21, 22])).toBe(true)
 
+    })
+    
+    // test('check ship collision', () => {
+    //     expect(gameBoard.checkCollisionWithShip([6, 7, 8, 9, 10])).toBe(false)
+
+    // })
 
 })
 

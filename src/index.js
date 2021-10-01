@@ -58,8 +58,13 @@ function placeShips(player) {
 
 function placeShip(e) {
     let location = parseInt(e.target.dataset.indexNumber)
+    
     Player1.ships[i].setCoords(location, axis)
-    Player1.gameBoard.setShip(Player1.ships[i])
+    let check = Player1.gameBoard.setShip(Player1.ships[i])
+    console.log(check)
+    if (check === false) {
+        return
+    }
     renderShips('.p1board', Player1)
     console.log(Player1)
     i++

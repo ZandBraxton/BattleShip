@@ -1,18 +1,18 @@
 
 import shipFactory from '../modules/shipFactory'
 
+let ship
+beforeEach(() => {
+    return ship = new shipFactory("carrier", 5)
+  });
 
 
-let ship = new shipFactory("carrier", 5)
-let area = []
-for (let i = 0; i < 100; i++) {
-    area.push(i)
-}
+
 
 
 
 test('ship attacked', () => {
-    ship.setCoords(4, area)
+    ship.setCoords(4, "x")
 
 
     expect(ship.Hit(6)).toBe("got hit")
@@ -21,7 +21,7 @@ test('ship attacked', () => {
 
 
 test('ship dead', ()=> {
-    ship.setCoords(5, area)
+    ship.setCoords(5, "x")
     ship.Hit(5);
     ship.Hit(6);
     ship.Hit(7);
@@ -32,7 +32,7 @@ test('ship dead', ()=> {
 })
 
 test('ship sunk true', ()=> {
-    ship.setCoords(5, area)
+    ship.setCoords(5, "x")
     ship.Hit(5);
     ship.Hit(6);
     ship.Hit(7);
@@ -44,5 +44,5 @@ test('ship sunk true', ()=> {
 
 
 test('coordinates placed', () => {
-    expect(ship.setCoords(4, area)).toBe(ship)
+    expect(ship.setCoords(4, "x")).toBe(ship)
 })

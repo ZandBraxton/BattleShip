@@ -13,8 +13,49 @@ export default class gameFactory {
     
     }
 
+    checkCollision(coords) {
+        //collision with x axis
+        const collision = [9, 19, 29, 39, 49, 59, 69, 79, 89];
+        //check if collision with other ship
+        for (let i = 0; i < this.hasShip.length; i++) {
+            if (coords.some((coord) => this.hasShip[i].coords.includes(coord)))
+            {
+                return false
+            }
+        }
+        //check if collision exceeds board size
+        if (coords.some((coord) => !this.boardArea[coord])) {
+            return false
+        } 
+        //check if collision with x axis
+        else if (collision.some((coord) => {
+            return [coord, coord + 1].every((result) => 
+                coords.includes(result)
+            )  
+        })
+        ) {
+            return false
+        } else {
+            return true
+        }
+    }
+
+
+        
+    
+    
+            
+        
+
+    
+
 
     setShip(ship) {
+       let check = this.checkCollision(ship.coords)
+       if (check === false) {
+           ship.coords = []
+           return false
+       }
         this.hasShip.push(ship)
         return ship
     }
