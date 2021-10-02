@@ -1,12 +1,14 @@
 import playerFactory from "./modules/playerFactory";
 import './styles.css';
+import './assets/asset'
 
 //create player
 const Player1 = new playerFactory('Player1')
 const CPU = new playerFactory('CPU')
 let i = 0
 let axis = 0
-// const currentPlayer;
+let root = document.documentElement;
+
 
 //init board
 
@@ -17,27 +19,52 @@ newGame.addEventListener('click', gameStart)
 function gameStart() {
     Player1.gameBoard.makeBoard();
     Player1.createShips()
-    renderBoard('.p1board', Player1);
+    renderBoard('p1board', Player1);
+    createRotateButton()
     appendListenerP1()
-    newGame.removeEventListener('click', gameStart)
+    hoverStyle(axis)
+    newGame.style.display = "none"
+    // newGame.removeEventListener('click', gameStart)
 }
-gameStart()
 
 
 
-let root = document.documentElement;
-root.style.setProperty('--ship-length', 50 * Player1.ships[i].length + "px")
 
 
 
-const rotate = document.querySelector('.rotate')
-rotate.addEventListener('click', changeAxis)
+
+
+
+// const rotate = document.querySelector('.rotate')
+// rotate.addEventListener('click', changeAxis)
+
+function createRotateButton(element) {
+    const body = document.querySelector('body')
+    const rotate = document.createElement('button')
+    rotate.classList.add('rotate')
+    rotate.textContent = "Rotate"
+    rotate.addEventListener('click', changeAxis)
+    body.appendChild(rotate)
+}
 
 function changeAxis() {
+    //0 for x axis, 1 for y axis
     if (axis === 0) {
         axis = 1
+        hoverStyle(axis)
     } else {
         axis = 0
+        hoverStyle(axis)
+    }
+}
+
+function hoverStyle(axis) {
+    if (axis === 0) {
+        root.style.setProperty('--ship-width', 50 * Player1.ships[i].length + "px")
+        root.style.setProperty('--ship-height', 50 + "px")
+    } else {
+        root.style.setProperty('--ship-width', 50 + 'px')
+        root.style.setProperty('--ship-height', 50 * Player1.ships[i].length + "px")
     }
 }
 
@@ -47,7 +74,6 @@ function changeAxis() {
 function placeShip(e) {
     let location = parseInt(e.target.dataset.indexNumber)
     Player1.ships[i].setCoords(location, axis)
-    root.style.setProperty('--ship-length', 50 * Player1.ships[i].length + "px")
     let check = Player1.gameBoard.setShip(Player1.ships[i])
     console.log(check)
     if (check === false) {
@@ -57,14 +83,20 @@ function placeShip(e) {
     console.log(Player1)
     i++
     if (i === 5) {
+        const rotate = document.querySelector('.rotate')
+        rotate.remove()
+        root.style.setProperty('--ship-width', 0 +"px")
+        root.style.setProperty('--ship-height', 0 + "px")
         let board = document.querySelector('.p1board')
         board.childNodes.forEach(cell => cell.removeEventListener('click', placeShip))
         CPU.gameBoard.makeBoard()
         CPU.createShips()
         placeCPUShips(CPU)
-        renderBoard('.cpuboard', CPU);
-        renderShips('.cpuboard', CPU)
+        renderBoard('cpuboard', CPU);
+        //renderShips('.cpuboard', CPU)
         appendListenerCPU()
+    } else {
+        hoverStyle(axis)
     }
 }
 
@@ -89,7 +121,9 @@ function placeCPUShips(CPU) {
 
 
 function renderBoard(element, player) {
-    let board = document.querySelector(element)
+    let main = document.querySelector('.game-container')
+    let board = document.createElement('div')
+    board.classList.add(element)
     for (let i = 0; i < player.gameBoard.boardArea.length; i++) {
         let cell = document.createElement('div')
         // cell.textContent = i
@@ -98,6 +132,7 @@ function renderBoard(element, player) {
         cell.dataset.indexNumber = i
         board.appendChild(cell)
     }
+    main.appendChild(board)
 }
 
 function renderShips(board, player) {
