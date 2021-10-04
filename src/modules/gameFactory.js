@@ -7,7 +7,8 @@ export default class gameFactory {
     }
 
     makeBoard() {
-        for (let i = 0; i < 100; i++) {
+        //for some reason breaks if i is 0
+        for (let i = 1; i < 101; i++) {
             this.boardArea.push(i)
         }
     
@@ -40,16 +41,6 @@ export default class gameFactory {
         }
     }
 
-
-        
-    
-    
-            
-        
-
-    
-
-
     setShip(ship) {
        let check = this.checkCollision(ship.coords)
        if (check === false) {
@@ -64,6 +55,7 @@ export default class gameFactory {
         let index = this.hasShip.indexOf(ship)
         this.hasShip.splice(index, 1)
         if (this.hasShip.length === 0) {
+            //if the array is 0 then all ships are sunk, returns game over
             this.allShipsSunk = true
             return "Game Over"
         }
@@ -71,11 +63,13 @@ export default class gameFactory {
     }
 
     receiveAttack(location) {
+        //goes through all 5 ships, checking if the target is within any of their coords
         for (let i = 0; i < this.hasShip.length; i++) {
              if (this.hasShip[i]['coords'].includes(location)) {
                 this.attacked.push(location)
                 return this.hasShip[i]
             }
+            //if this spot has already been attacked
         } if (this.attacked.includes(location)) {
             return "AlreadyAttacked"
         } else {

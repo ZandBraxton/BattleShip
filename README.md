@@ -52,8 +52,8 @@ Make mouse hover register if rotation is y axis -->
 <!-- make mouse hover go away after all five ships are placed -->
 
 
-make game end screen
-stop event listener on game end
-make restart game work
+<!-- make game end screen -->
+<!-- stop event listener on game end
+make restart game work -->
 <!-- add rotation to ship -->
 

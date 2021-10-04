@@ -32,9 +32,10 @@ export default class playerFactory {
         }
         let isDead = result.Hit(location)
         if (isDead === true) {
+            //result will be game over if all ships are sunk
            let isGameOver = player.gameBoard.sinkShip(result)
            if (isGameOver === "Game Over") {
-               console.log(`${this.name} Wins!`)
+               return "gameover"
            }
         }
         return "Hit"
